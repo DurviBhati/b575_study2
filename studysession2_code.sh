@@ -10,3 +10,11 @@ cat /mnt/d/UMich/Courses_fall/bioinf575/gsm_data.txt | grep -v "#" | awk '$1==10
 
 ## here is the count
 cat /mnt/d/UMich/Courses_fall/bioinf575/gsm_data.txt | grep -v "#" | awk '$1==10 && (length($4)!=1 || length($5)!=1)' | wc -l
+
+## The code to the  3rd question  where we are the  finding variants that are position specific 
+
+## These are the first 10 variants 
+cat /mnt/d/UMich/Courses_fall/bioinf575/gsm_data.txt | grep -v "^#" | awk '($2 > 230000 && $2<730000)' | head
+
+##These are the number of varinats  between the values 
+cat /mnt/d/UMich/Courses_fall/bioinf575/gsm_data.txt | grep -v "^#" | awk '($2 > 230000 && $2<730000)' | wc -l
