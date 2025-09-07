@@ -18,3 +18,16 @@ cat /mnt/d/UMich/Courses_fall/bioinf575/gsm_data.txt | grep -v "^#" | awk '($2 >
 
 ##These are the number of varinats  between the values 
 cat /mnt/d/UMich/Courses_fall/bioinf575/gsm_data.txt | grep -v "^#" | awk '($2 > 230000 && $2<730000)' | wc -l
+
+## To answer the last question about finding variants with a DP > 100 
+
+## We first make a function named filter_dp 
+filter_dp() { awk -F'\t' '$0 !~ /^#/{ split($8,info,";"); for(i in info){ if(info[i] ~ /^DP=/){ split(info[i],dp,"="); if(dp[2]>100){ print $1,$2,$4,$5,info[i]; break}}}}' "$1"; }
+
+## To calculate the first 10 from our file 
+filter_dp /mnt/d/UMich/Courses_fall/bioinf575/gsm_data.txt | head 
+
+## To calculate the total number of variants 
+filter_dp /mnt/d/UMich/Courses_fall/bioinf575/gsm_data.txt | wc -l
+
+
