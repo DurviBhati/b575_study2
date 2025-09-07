@@ -27,7 +27,12 @@ filter_dp() { awk -F'\t' '$0 !~ /^#/{ split($8,info,";"); for(i in info){ if(inf
 ## To calculate the first 10 from our file 
 filter_dp /mnt/d/UMich/Courses_fall/bioinf575/gsm_data.txt | head 
 
-## To calculate the total number of variants 
+## To calculate the total number of variants
 filter_dp /mnt/d/UMich/Courses_fall/bioinf575/gsm_data.txt | wc -l
 
+#####To the next set of problems :
+## If we want to just extract the ids and put them in different file: 
+cat /mnt/d/UMich/Courses_fall/bioinf575/multi_seq.fa | grep "^>" | sed 's/^>[^|]*|//' > seq_ids.txt
 
+## To filter some lines and tranfer them into other
+cat /mnt/d/UMich/Courses_fall/bioinf575/seq_ids.txt | sed -n '1~2p' > seq_ids_selected.txt
